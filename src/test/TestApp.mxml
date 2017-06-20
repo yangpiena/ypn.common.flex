@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:components="org.ypn.common.flatSpark.components.*"
+			   minWidth="955" minHeight="600">
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace mx "library://ns.adobe.com/flex/mx";
+		@namespace components "org.ypn.common.flatSpark.components.*";
+
+		
+		s|Button {
+			skinClass: ClassReference("org.ypn.common.flatSpark.skins.ButtonSkin");
+		} 
+		
+		s|TextInput {
+			skinClass: ClassReference("org.ypn.common.flatSpark.skins.TextInputSkin");
+		}
+		
+		s|RadioButton {
+			skinClass: ClassReference("org.ypn.common.flatSpark.skins.RadioButtonSkin");
+		}
+		
+		s|CheckBox {
+			skinClass: ClassReference("org.ypn.common.flatSpark.skins.CheckBoxSkin");
+		}
+		
+		s|RadioButton {
+			skinClass: ClassReference("org.ypn.common.flatSpark.skins.RadioButtonSkin");
+		}
+		
+		s|TitleWindow {
+			skinClass: ClassReference("org.ypn.common.flatSpark.skins.TitleWindowSkin");
+		}
+		
+		s|Panel {
+			skinClass: ClassReference("org.ypn.common.flatSpark.skins.PanelSkin");
+		}
+		
+		s|ComboBox {
+			skinClass: ClassReference("org.ypn.common.flatSpark.skins.ComboBoxSkin");
+		}
+		
+		s|DropDownList {
+			skinClass: ClassReference("org.ypn.common.flatSpark.skins.DropDownListSkin");
+		}
+		
+		mx|ProgressBar {
+			skinClass: ClassReference("org.ypn.common.flatSpark.skins.ProgressBarSkin");
+		}
+		
+		mx|Alert {
+			skinClass: ClassReference("org.ypn.common.flatSpark.skins.AlertSkin");
+		}
+		global
+		{
+			modal-transparency: 0.85;
+			modal-transparency-blur: 1;
+			modal-transparency-color: #000000;
+		}
+		
+	</fx:Style>
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.managers.PopUpManager;
+			
+			import org.ypn.common.flatSpark.components.ResizeTitleWindow;
+			import org.ypn.common.flatSpark.enums.BrandColorEnum;
+			import org.ypn.common.flatSpark.enums.ButtonSizeEnum;
+			import org.ypn.common.flatSpark.enums.TextInputSizeEnum;
+			import org.ypn.common.flatSpark.utils.AwesomeUtils;
+			import org.ypn.common.flatSpark.utils.FontFamilyUtils;
+			
+			
+			protected function clickButton(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				var testeTitleWindow:TestTitleWindow;	
+				testeTitleWindow = new TestTitleWindow();
+				//				testeTitleWindow.setStyle("modalTransparency",0.85);
+				//				testeTitleWindow.setStyle("modalTransparencyBlur",1);
+				//				testeTitleWindow.setStyle("modalTransparencyColor", 0x000000);
+				PopUpManager.addPopUp(testeTitleWindow, this, true);
+			}
+			
+			public function alertButton(event:Event):void
+			{
+				Alert.show("To-do: Need to adjust the styles for buttons", "Alert title", Alert.OK | Alert.CANCEL | Alert.YES | Alert.NO);//, this, onAlertClosed , imgCls, 2 );	
+			}
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				var resizeTitleWindow:ResizeTitleWindow = new ResizeTitleWindow();
+				PopUpManager.addPopUp(resizeTitleWindow, this, true);
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	
+
+	<s:Scroller width="100%" height="100%">
+		<s:VGroup width="100%" height="100%" gap="20" paddingBottom="10" paddingLeft="10"
+				  paddingRight="10" paddingTop="10">
+			<s:HGroup width="100%" gap="20">
+				<components:ButtonIcon width="213" height="{ButtonSizeEnum.Large}"
+									   label="Primary Button" brand="{BrandColorEnum.Primary}"/>
+				<components:ButtonIcon width="213" height="{ButtonSizeEnum.Large}"
+									   label="Warning Button" brand="{BrandColorEnum.Warning}"/>
+				<components:ButtonIcon width="213" height="{ButtonSizeEnum.Large}"
+									   label="Default Button" brand="{BrandColorEnum.Default}"/>
+				<components:ButtonIcon width="213" height="{ButtonSizeEnum.Large}"
+									   label="Danger Button" brand="{BrandColorEnum.Danger}"/>
+				<s:Button label="普通按钮的汉字字体"/>
+			</s:HGroup>
+			<s:HGroup width="100%" gap="20">
+				<components:ButtonIcon width="213" height="{ButtonSizeEnum.Large}"
+									   label="Success Button" brand="{BrandColorEnum.Success}"/>
+				<components:ButtonIcon width="213" height="{ButtonSizeEnum.Large}"
+									   label="Inverse Button" brand="{BrandColorEnum.Inverse}"/>
+				<components:ButtonIcon width="213" height="{ButtonSizeEnum.Large}"
+									   label="Info Button" brand="{BrandColorEnum.Info}"
+									   iconFont="{AwesomeUtils.fa_info_circle}"/>
+				<components:ButtonIcon width="213" height="{ButtonSizeEnum.Large}"
+									   label="Disabled Button" brand="{BrandColorEnum.Danger}"
+									   enabled="false"/>
+				<components:ButtonIcon label="图标按钮的汉字字体" brand="{BrandColorEnum.Info}"
+									   iconFont="{AwesomeUtils.fa_apple}"/>
+			</s:HGroup>
+			<s:HGroup width="100%" gap="20">
+				<components:ButtonIcon height="{ButtonSizeEnum.ExtraSmall}" label="Extra Small"
+									   brand="{BrandColorEnum.Inverse}"
+									   iconFont="{AwesomeUtils.fa_star_o}"/>
+				<components:ButtonIcon height="{ButtonSizeEnum.Small}" label="Small"
+									   brand="{BrandColorEnum.Inverse}"
+									   iconFont="{AwesomeUtils.fa_star_o}"/>
+				<components:ButtonIcon height="{ButtonSizeEnum.Normal}" label="Normal"
+									   brand="{BrandColorEnum.Inverse}"
+									   iconFont="{AwesomeUtils.fa_star_o}"/>
+				<components:ButtonIcon height="{ButtonSizeEnum.Large}" label="Large"
+									   brand="{BrandColorEnum.Inverse}"
+									   iconFont="{AwesomeUtils.fa_star_o}"/>
+			</s:HGroup>
+			
+			<s:Label id="iconFont" color="0x000000" fontFamily="FontAwesome" fontSize="100"
+					 text="{AwesomeUtils.fa_flag}" textAlign="left">
+			</s:Label>
+			
+			<s:HGroup>
+				<components:TextInputIcon id="teste" prompt="Error"/>
+				<components:TextInputIcon text="No Icon"/>
+				<components:TextInputIcon width="200" iconFont="{AwesomeUtils.fa_user}"/>
+				<components:TextInputIcon enabled="false" iconFont="{AwesomeUtils.fa_star}"
+										  text="disabled"/>
+				<s:TextInput text="普通输入框的汉字字体"/>
+			</s:HGroup>
+			<s:HGroup>
+				<components:TextInputIcon width="200" height="{TextInputSizeEnum.Small}"
+										  iconFont="{AwesomeUtils.fa_user}" prompt="Small"/>
+				<components:TextInputIcon width="200" height="{TextInputSizeEnum.Normal}"
+										  iconFont="{AwesomeUtils.fa_user}" prompt="Normal"/>
+				<components:TextInputIcon width="200" height="{TextInputSizeEnum.Large}"
+										  iconFont="{AwesomeUtils.fa_user}" prompt="Large"/>
+				<components:TextInputIcon iconFont="{AwesomeUtils.fa_adjust}" text="图标输入框的汉字字体"/>
+			</s:HGroup>
+			
+			<s:HGroup>
+				<components:ToggleSwitch/>
+				<components:ToggleSwitch deselectedLabel="Test 2" selected="true"
+										 selectedLabel="Test 1"/>
+				<components:ToggleSwitch deselectedLabel="Disabled" enabled="false" selected="true"
+										 selectedLabel="Disabled"/>
+				<components:ToggleSwitch deselectedLabel="Disabled" enabled="false"
+										 selectedLabel="Disabled"/>
+				<components:ToggleSwitch deselectedLabel="关的汉字字体" selected="true"
+										 selectedLabel="开的汉字字体"/>
+			</s:HGroup>
+			
+			<s:HGroup>
+				<s:CheckBox label="Test"/>
+				<s:CheckBox label="Selecionado" selected="true"/>
+				<s:CheckBox label="Desabilitado" enabled="false" selected="true"/>
+				<s:CheckBox label="Desabilitado" enabled="false"/>
+				<s:CheckBox label="普通复选框的汉字字体"/>
+			</s:HGroup>
+			
+			<s:HGroup>
+				<s:RadioButton label="Test" groupName="grupo1"/>
+				<s:RadioButton label="Test 2" groupName="grupo1" selected="true"/>
+				<s:RadioButton label="Desabilitado" enabled="false" groupName="grupo2"
+							   selected="true"/>
+				<s:RadioButton label="Desabilitado" enabled="false" groupName="grupo2"/>
+			</s:HGroup>
+			
+			<s:HGroup>
+				<s:Button label="Open PopUp" click="{clickButton(event)}"/>
+				<s:Button label="Open Alert" click="{alertButton(event)}"/>
+				<s:Button label="打开可放大弹出框" click="button1_clickHandler(event)"/>
+			</s:HGroup>
+			
+			<s:HGroup>
+				<s:ComboBox prompt="Select...">
+					<s:dataProvider>
+						<s:ArrayList>
+							<fx:String>Durche die Wuste</fx:String>
+							<fx:String>Samurai</fx:String>
+							<fx:String>Traumfabrik</fx:String>
+							<fx:String>Durche die Wuste</fx:String>
+							<fx:String>Samurai</fx:String>
+							<fx:String>Traumfabrik</fx:String>
+							<fx:String>Durche die Wuste</fx:String>
+							<fx:String>Samurai</fx:String>
+							<fx:String>Traumfabrik</fx:String>
+							<fx:String>Durche die Wuste</fx:String>
+							<fx:String>Samurai</fx:String>
+							<fx:String>Traumfabrik</fx:String>
+							<fx:String>Durche die Wuste</fx:String>
+							<fx:String>Samurai</fx:String>
+							<fx:String>Traumfabrik</fx:String>
+							<fx:String>Durche die Wuste</fx:String>
+							<fx:String>Samurai</fx:String>
+							<fx:String>Traumfabrik</fx:String>
+							<fx:String>Durche die Wuste</fx:String>
+							<fx:String>Samurai</fx:String>
+							<fx:String>Traumfabrik</fx:String>
+							<fx:String>Durche die Wuste</fx:String>
+							<fx:String>Samurai</fx:String>
+							<fx:String>Traumfabrik</fx:String>
+						</s:ArrayList>
+					</s:dataProvider>        
+				</s:ComboBox>
+				<s:DropDownList id="dropDownLst" width="200" requireSelection="true">
+					<s:dataProvider>
+						<s:ArrayList source="[The,quick,brown,fox,jumps,over,the,lazy,dog]"/>
+					</s:dataProvider>
+				</s:DropDownList> 
+			</s:HGroup>
+			
+			<s:HGroup>
+				<mx:ProgressBar id="progress" width="300"/>
+				<!--<ns:ProgressBar id="progress" 
+				width="300" 
+				totalProgress="100" 
+				currentProgress="{slider.value}"
+				displayPercents="true"
+				direction="left"/>-->
+				<s:HSlider id="slider" top="60" maximum="100" minimum="0" showDataTip="false"
+						   value="75"/>
+			</s:HGroup>
+			
+			<s:HGroup>
+				<s:Panel width="555" height="300" title="Panel title 1">
+					<s:Label left="10" top="10" color="0x000000"
+							 fontFamily="{FontFamilyUtils.Default}" fontSize="16"
+							 text="Panel content"/>
+				</s:Panel>
+				<s:Spacer width="30"/>
+				<s:Panel width="555" height="300" title="Panel title 2">
+					<s:Label left="10" top="10" color="0x000000"
+							 fontFamily="{FontFamilyUtils.Default}" fontSize="16"
+							 text="Panel content面板内容"/>
+					<s:controlBarContent>
+						<components:ButtonIcon label="Help" brand="{BrandColorEnum.Info}"/>
+					</s:controlBarContent>
+				</s:Panel>
+			</s:HGroup>
+			
+		</s:VGroup>
+	</s:Scroller>
+</s:Application>

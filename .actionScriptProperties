@@ -34,6 +34,7 @@
   </compiler>
   <applications>
     <application path="flatSpark.skins.as"/>
+    <application path="test.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
