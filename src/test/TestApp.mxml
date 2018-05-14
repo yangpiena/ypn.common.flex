@@ -3,6 +3,7 @@
 			   xmlns:s="library://ns.adobe.com/flex/spark"
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
 			   xmlns:components="org.ypn.common.flatSpark.components.*"
+			   xmlns:components1="org.ypn.common.components.*"
 			   minWidth="955" minHeight="600">
 		<fx:Style>
 		@namespace s "library://ns.adobe.com/flex/spark";
@@ -73,6 +74,39 @@
 			import org.ypn.common.flatSpark.utils.AwesomeUtils;
 			import org.ypn.common.flatSpark.utils.FontFamilyUtils;
 			
+			
+			private var dp:Array = [
+				{ symbol: "ADBE", name: "Adobe Systems Inc.", price: 49000.95 },
+				{ symbol: "BETA", name: "Beta Inc.", price: 19.95 },
+				{ symbol: "CSCO", name: "Cisco Inc.", price: 45.95 },
+				{ symbol: "DELL", name: "Dell Inc.", price: 34.95 },
+				{ symbol: "EXPD", name: "Expedia Inc.", price: 39.95 },
+				{ symbol: "FOXS", name: "Fox Sports Inc.", price: 9.95 },
+				{ symbol: "GOOG", name: "Google Inc.", price: 139.95 },
+				{ symbol: "ICON", name: "Icon Inc.", price: 32.95 },
+				{ symbol: "JUNI", name: "Juniper Inc.", price: 23.95 },
+				{ symbol: "KLA", name: "KLA Tencor Inc.", price: 37.95 },
+				{ symbol: "MACR", name: "Macromedia Inc.", price: 39.95 },
+				{ symbol: "MSFT", name: "Microsoft Corp.", price: 25.95 },
+				{ symbol: "IBM", name: "IBM Corp.", price: 42.55 }
+			];
+			
+			public function averageFunction(col:DataGridColumn):String
+			{
+				var n:int = dp.length;
+				var avg:Number = 0;
+				for (var i:int = 0; i < n; i++)
+				{
+					avg += dp[i][col.dataField];
+				}
+				avg /= n;
+				return "AVG: " + avg.toFixed(2);
+			}
+			
+			public function totalFunction(col:DataGridColumn):String
+			{
+				return "Total：" + dp.length;
+			}
 			
 			protected function clickButton(event:Event):void
 			{
@@ -269,6 +303,20 @@
 					</s:controlBarContent>
 				</s:Panel>
 			</s:HGroup>
+			
+			<components1:TotalDataGrid paddingBottom="0" paddingTop="0" dataProvider="{dp}">
+				<components1:columns>
+					<components1:TotalDataGridColumn headerText="代号" dataField="symbol">
+						<mx:DataGridColumn labelFunction="totalFunction"/>
+					</components1:TotalDataGridColumn>
+					<components1:TotalDataGridColumn headerText="名称" dataField="name">
+						<mx:DataGridColumn/>
+					</components1:TotalDataGridColumn>
+					<components1:TotalDataGridColumn headerText="单价" dataField="price">
+						<mx:DataGridColumn labelFunction="averageFunction"/>
+					</components1:TotalDataGridColumn>
+				</components1:columns>
+			</components1:TotalDataGrid>
 			
 		</s:VGroup>
 	</s:Scroller>

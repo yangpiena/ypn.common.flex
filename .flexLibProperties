@@ -34,6 +34,8 @@
     <classEntry path="org.ypn.common.flatSpark.skins.PanelSkin"/>
     <classEntry path="org.ypn.common.flatSpark.skins.AlertSkin"/>
     <classEntry path="org.ypn.common.flatSpark.utils.FontFamilyUtils"/>
+    <classEntry path="org.ypn.common.components.TotalDataGrid"/>
+    <classEntry path="org.ypn.common.components.TotalDataGridColumn"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="org/ypn/common/flatSpark/assets/fonts/lato/Lato_Regular_Italic.otf" sourcePath="org/ypn/common/flatSpark/assets/fonts/lato/Lato_Regular_Italic.otf"/>
